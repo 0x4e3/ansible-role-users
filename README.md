@@ -56,7 +56,7 @@ To use this role with other roles in different playbooks, you can override ```us
 in few other places (```defaults/main.yml```, ```vars/main.yml```, in role ```vars``` in the playbook etc).  
 
 ### Oh-my-zsh
-To adds ```oh-my-zsh``` for some user, you need to extend required element of ```users``` array with specific values or use default values from [zsh role]().  
+To adds ```oh-my-zsh``` for some user, you need to extend required element of ```users``` array with specific values or use default values from [zsh role](https://git.itgene.ru/ansible/zsh).  
 Example configuration with user-specific oh-my-zsh settings:  
 ```yml
 users:
