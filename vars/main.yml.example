@@ -1,0 +1,2 @@
+---
+default_password: 'some password made with command mkpasswd --method=sha-512'

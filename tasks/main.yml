@@ -1,0 +1,42 @@
+---
+- name: Install latest version of chage (RedHat)
+  yum: name={{ item }} state=present
+  when: ansible_os_family in ('RedHat', 'CentOS')
+  with_items: 
+    - shadow-utils
+
+- name: Install latest version of chage (Debian)
+  apt: name={{ item }} state=present
+  when: ansible_os_family in ('Ubuntu', 'Debian')
+  with_items: 
+    - passwd
+
+- name: Creating sudo group
+  group: name=sudo state=present
+
+- name: Getting existed users
+  shell: cat /etc/passwd | awk -F":" '{print $1}' | grep -v '-'
+  register: existed
+
+- name: Creating users
+  user: 
+    name={{ item.username }} 
+    password={{ default_password }} 
+    groups={{ item.groups }}
+    append=yes 
+    update_password=on_create
+    state=present
+  with_items: "{{ users }}"
+
+- name: Adding public key for users
+  authorized_key: 
+    user={{ item.username }}
+    key="{{ lookup('file', './files/id_rsa.pub.' + item.username) }}" 
+    manage_dir=yes 
+    state=present
+  with_items: "{{ users }}"
+
+- name: Forcing users to change password
+  shell: chage -d 0 {{ item }}
+  when: "item not in existed.stdout_lines
+  with_items: "{{ users|map(attribute='username')|list }}"
