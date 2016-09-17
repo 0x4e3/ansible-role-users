@@ -1,0 +1,6 @@
+---
+users:
+  - name: Alexander Lebedev
+    username: ad
+    shell: /bin/zsh
+    groups: sudo
