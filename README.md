@@ -1,4 +1,4 @@
-# "User" role for initial server configuration  
+# "Users" role for initial server configuration  
   
 ## General
 This role appliable for the Debian/Ubuntu and RedHat/CentOS operation systems.  
