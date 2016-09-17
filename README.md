@@ -1,7 +1,7 @@
 # "Users" role for initial server configuration  
   
 ## General
-This role appliable for the Debian/Ubuntu and RedHat/CentOS operation systems.  
+This role appliable for the Debian/Ubuntu and RedHat/CentOS operating systems.  
 It's do the following:  
 * checks if required packages installed (```shadow-utils``` for RedHat and ```passwd``` - for Debian)  
 * adds ```sudo``` group if required  
